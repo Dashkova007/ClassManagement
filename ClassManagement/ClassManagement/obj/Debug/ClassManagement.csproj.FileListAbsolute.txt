@@ -1,0 +1,17 @@
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\bin\Debug\ClassManagement.exe.config
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\bin\Debug\ClassManagement.exe
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\bin\Debug\ClassManagement.pdb
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.BookingForm.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.LoginForm.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.MainFormAdmin.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.MainFormTeacher.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.PersonalForm.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.Properties.Resources.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.exe
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.pdb
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.AudienceForm.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.ConfirmationForm.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.LessonForm.resources
+C:\Users\Admin\Desktop\ClassManagement\ClassManagement\obj\Debug\ClassManagement.TeacherInfoForm.resources
