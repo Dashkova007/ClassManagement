@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище StepSchedulerModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClassRooms">
+    <Key>
+      <PropertyRef Name="ClassRoomId" />
+    </Key>
+    <Property Name="ClassRoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="WorkPlacesCount" Type="int" Nullable="false" />
+    <Property Name="IsAvailable" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassRoomId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DateRequest" Type="date" Nullable="false" />
+    <Property Name="ClassDate" Type="date" Nullable="false" />
+    <Property Name="LessonNumber" Type="int" Nullable="false" />
+    <Property Name="CountOfVisitors" Type="int" />
+    <Property Name="EventDescription" Type="nvarchar(max)" />
+    <Property Name="Status" Type="int" />
+    <Property Name="IsNew" Type="bit" />
+  </EntityType>
+  <EntityType Name="ReservedRooms">
+    <Key>
+      <PropertyRef Name="ReservedRoomId" />
+    </Key>
+    <Property Name="ReservedRoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestId" Type="int" Nullable="false" />
+    <Property Name="EventType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Photo" Type="varbinary" MaxLength="1" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="E-Mail" Type="nvarchar(max)" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="IsBlocked" Type="bit" />
+  </EntityType>
+  <Association Name="FK__Requests__ClassR__4F7CD00D">
+    <End Role="ClassRooms" Type="Self.ClassRooms" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassRooms">
+        <PropertyRef Name="ClassRoomId" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="ClassRoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Requests__UserId__4E88ABD4">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReservedR__Reque__5070F446">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="ReservedRooms" Type="Self.ReservedRooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestId" />
+      </Principal>
+      <Dependent Role="ReservedRooms">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище StepSchedulerModelContainer">
+    <EntitySet Name="ClassRooms" EntityType="Self.ClassRooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReservedRooms" EntityType="Self.ReservedRooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Requests__ClassR__4F7CD00D" Association="Self.FK__Requests__ClassR__4F7CD00D">
+      <End Role="ClassRooms" EntitySet="ClassRooms" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Requests__UserId__4E88ABD4" Association="Self.FK__Requests__UserId__4E88ABD4">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReservedR__Reque__5070F446" Association="Self.FK__ReservedR__Reque__5070F446">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="ReservedRooms" EntitySet="ReservedRooms" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

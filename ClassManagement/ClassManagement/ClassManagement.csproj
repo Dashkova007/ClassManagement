@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F82EF41D-552D-4044-BA39-4530C668A305}</ProjectGuid>
+    <ProjectGuid>{5E56F0B9-0C24-43DB-AEF8-264FFD3B320A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ClassManagement</RootNamespace>
     <AssemblyName>ClassManagement</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,8 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,29 +62,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudienceForm.cs">
+    <Compile Include="Admin\AudienceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AudienceForm.Designer.cs">
+    <Compile Include="Admin\AudienceForm.Designer.cs">
       <DependentUpon>AudienceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookingForm.cs">
+    <Compile Include="Admin\ConfirmationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BookingForm.Designer.cs">
-      <DependentUpon>BookingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ConfirmationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfirmationForm.Designer.cs">
+    <Compile Include="Admin\ConfirmationForm.Designer.cs">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LessonForm.cs">
+    <Compile Include="Admin\FormViewAudience.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LessonForm.Designer.cs">
+    <Compile Include="Admin\FormViewAudience.Designer.cs">
+      <DependentUpon>FormViewAudience.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormViewLessons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormViewLessons.Designer.cs">
+      <DependentUpon>FormViewLessons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormViewTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormViewTeacher.Designer.cs">
+      <DependentUpon>FormViewTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\LessonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\LessonForm.Designer.cs">
       <DependentUpon>LessonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MainFormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\MainFormAdmin.Designer.cs">
+      <DependentUpon>MainFormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TeacherInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\TeacherInfoForm.Designer.cs">
+      <DependentUpon>TeacherInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\WorkWithExcel.cs" />
+    <Compile Include="ClassRooms.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -77,55 +120,76 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainFormAdmin.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainFormAdmin.Designer.cs">
-      <DependentUpon>MainFormAdmin.cs</DependentUpon>
+    <Compile Include="Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainFormTeacher.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainFormTeacher.Designer.cs">
-      <DependentUpon>MainFormTeacher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PersonalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PersonalForm.Designer.cs">
-      <DependentUpon>PersonalForm.cs</DependentUpon>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeacherInfoForm.cs">
+    <Compile Include="Requests.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReservedRooms.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\BookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TeacherInfoForm.Designer.cs">
-      <DependentUpon>TeacherInfoForm.cs</DependentUpon>
+    <Compile Include="Teacher\BookingForm.Designer.cs">
+      <DependentUpon>BookingForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AudienceForm.resx">
+    <Compile Include="Teacher\MainFormTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teacher\MainFormTeacher.Designer.cs">
+      <DependentUpon>MainFormTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\PersonalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teacher\PersonalForm.Designer.cs">
+      <DependentUpon>PersonalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin\AudienceForm.resx">
       <DependentUpon>AudienceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BookingForm.resx">
-      <DependentUpon>BookingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmationForm.resx">
+    <EmbeddedResource Include="Admin\ConfirmationForm.resx">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LessonForm.resx">
+    <EmbeddedResource Include="Admin\FormViewAudience.resx">
+      <DependentUpon>FormViewAudience.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormViewLessons.resx">
+      <DependentUpon>FormViewLessons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormViewTeacher.resx">
+      <DependentUpon>FormViewTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\LessonForm.resx">
       <DependentUpon>LessonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\MainFormAdmin.resx">
+      <DependentUpon>MainFormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\TeacherInfoForm.resx">
+      <DependentUpon>TeacherInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainFormAdmin.resx">
-      <DependentUpon>MainFormAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainFormTeacher.resx">
-      <DependentUpon>MainFormTeacher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PersonalForm.resx">
-      <DependentUpon>PersonalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -136,9 +200,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TeacherInfoForm.resx">
-      <DependentUpon>TeacherInfoForm.cs</DependentUpon>
+    <EmbeddedResource Include="Teacher\BookingForm.resx">
+      <DependentUpon>BookingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Teacher\MainFormTeacher.resx">
+      <DependentUpon>MainFormTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teacher\PersonalForm.resx">
+      <DependentUpon>PersonalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -152,5 +230,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
